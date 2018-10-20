@@ -21,9 +21,11 @@ let save = (repos) => {
   //for each repo in the array, pull out the info we want to put in the database
   for (let i = 0; i < repos.length; i += 1) {
     let repo = repos[i];
+    console.log("repo owner is ", repo.owner);
     let col = new Repo({
       _id: repo.id,
-      name: repo.name,
+      repo_name: repo.name,
+      owner_name: repo.owner.login,
       owner_id: repo.owner.id,
       forks: repo.forks,
       url: repo.git_url

@@ -29,13 +29,16 @@ app.use(bodyParser.urlencoded({ extended: false}));
 //routes
 app.post('/repos', function (req, res) {
   let username = req.body.term;
-  res.send(`Got your get for username!`);
-  console.log(username);
+  getReposByUsername(username, (error, res, body) => {
+    console.log("The gibhub request worked! First repo in res body is: ", JSON.parse(body)[0]);
+    save(JSON.parse(body));
+  });
+  
   // TODO - your code here!
   // This route should take the github username provided
   // and get the repo information from the github API, then
   // save the repo information in the database
-
+  res.status(201).send(`Got your get request!`);
 });
 
 app.get('/repos', function (req, res) {
