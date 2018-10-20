@@ -28,6 +28,9 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 //routes
 
+// app.get('/', function(req, res) {
+//   res.redirect('/repos');
+// })
 // This route takes the github username provided and gets the repo information from the github API, then
 // saves the repo information in the database
 app.post('/repos', function (req, res) {
