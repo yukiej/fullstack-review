@@ -10,7 +10,7 @@ let repoSchema = new mongoose.Schema({
   owner_id: Number,
   forks: Number,
   url: String
-});
+}, {collection: 'Repos'});
 
 let Repo = mongoose.model('Repo', repoSchema);
 
@@ -29,9 +29,13 @@ let save = (repos) => {
       url: repo.git_url
     });
     newCols.push(col);
-    
-  }
-  db.collection('Repos').insertMany(newCols);
-}
+    col.save((err, request) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log("hooray I just added ", request);
+    }
+  });
+}}
 
 module.exports.save = save;
