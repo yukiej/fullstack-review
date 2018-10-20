@@ -1,8 +1,29 @@
 const express = require('express');
+const { save } = require('../database/index.js');
 let app = express();
 
+const testData = require('../data.json');
+
+const mongoose = require('mongoose');
+const mongoDB = 'mongodb://localhost/fetcher';
+
+mongoose.connect(mongoDB, {useMongoClient: true}, function(error, success) {
+  if (error) {
+    console.error.bind(console, 'Error connecting to database!');
+  } else {
+    console.log("Successfully connected to mongoDB database!");
+  }
+});
+
+mongoose.Promise = global.Promise;
+
+var db = mongoose.connection;
+
+//middleware
 app.use(express.static(__dirname + '/../client/dist'));
 
+
+//routes
 app.post('/repos', function (req, res) {
   // TODO - your code here!
   // This route should take the github username provided
@@ -21,3 +42,6 @@ app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
 
+// console.log(save);
+
+// save(testData);
