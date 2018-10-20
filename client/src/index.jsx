@@ -18,7 +18,7 @@ class App extends React.Component {
 
     let request = $.ajax({
       url: url,
-      method: 'GET',
+      method: 'POST',
       data: {term: term}
     });
 

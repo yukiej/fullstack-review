@@ -25,6 +25,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 //routes
 app.post('/repos', function (req, res) {
+  res.send(`Got your get for username!`);
   // TODO - your code here!
   // This route should take the github username provided
   // and get the repo information from the github API, then
@@ -32,7 +33,6 @@ app.post('/repos', function (req, res) {
 });
 
 app.get('/repos', function (req, res) {
-  res.send('Got your get!');
   // TODO - your code here!
   // This route should send back the top 25 repos
 });
