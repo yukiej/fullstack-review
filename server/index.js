@@ -1,5 +1,5 @@
 const express = require('express');
-const { save } = require('../database/index.js');
+const { save, read } = require('../database/index.js');
 let app = express();
 const bodyParser = require('body-parser');
 const { getReposByUsername } = require('../helpers/github.js');
@@ -27,23 +27,28 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
 //routes
+
+// This route takes the github username provided and gets the repo information from the github API, then
+// saves the repo information in the database
 app.post('/repos', function (req, res) {
   let username = req.body.term;
   getReposByUsername(username, (error, res, body) => {
     console.log("The gibhub request worked! First repo in res body is: ", JSON.parse(body)[0]);
     save(JSON.parse(body));
   });
-  
-  // TODO - your code here!
-  // This route should take the github username provided
-  // and get the repo information from the github API, then
-  // save the repo information in the database
   res.status(201).send(`Got your get request!`);
 });
 
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
+  // let results = db.Repos.find().sort({ forks: 1 }).limit(25).toArray();
+  read((findResults) => {
+    console.log("The top 25 results are: ", findResults);
+    res.send(findResults);
+  });
+  
+  
 });
 
 let port = 1128;

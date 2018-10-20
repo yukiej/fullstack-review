@@ -40,4 +40,9 @@ let save = (repos) => {
   });
 }}
 
-module.exports.save = save;
+let read = (callback) => {
+  Repo.find({}).limit(25).sort({forks: -1}).exec((err, res) => {callback(res)});
+  // Repo.find({}).limit(25).sort({forks: 1}).exec((err, res) => {callback(res)});
+}
+
+module.exports = { save, read };
