@@ -1,7 +1,7 @@
 import React from 'react';
 import Repo from './Repoview.jsx';
 
-console.log(Repo);
+// console.log(Repo);
 
 const RepoList = (props) => {
   let repos = props.repos.map((repo) => {

@@ -188,6 +188,26 @@ class App extends React.Component {
 
   }
 
+  componentDidMount() {
+    let url = 'http://localhost:1128/repos';
+
+    let request = $.ajax({
+      url: url,
+      method: 'GET',
+    });
+
+    request.done(function(msg) {
+      console.log("On load received ", msg);
+      this.setState({repos: msg});
+    }.bind(this));
+
+    request.fail(function(textStatus) {
+      console.log(`Request failed: ${textStatus}`);
+    })
+
+    console.log(`I got some data!`);
+  }
+
   search (term) {
     let url = 'http://localhost:1128/repos';
 

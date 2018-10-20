@@ -8,7 +8,7 @@ const Repo = (props) => {
 
   return (
     <li>
-      <span> {repo_name} by </span><span> {username} </span><span> ({forks} forks) </span>
+      <span><a href={url}>{repo_name}</a> by </span><span> {username} </span><span> ({forks} forks) </span>
     </li>
   )
 }
