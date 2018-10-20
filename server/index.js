@@ -1,6 +1,7 @@
 const express = require('express');
 const { save } = require('../database/index.js');
 let app = express();
+const { getReposByUsername } = require('../helpers/github.js');
 
 const testData = require('../data.json');
 
@@ -43,6 +44,7 @@ app.listen(port, function() {
   console.log(`listening on port ${port}`);
 });
 
+// getReposByUsername('yukiej');
 // console.log(save);
 
 // save(testData);
