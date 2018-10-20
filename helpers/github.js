@@ -20,6 +20,8 @@ let getReposByUsername = (username) => {
   let repoReqCB = function(error, response, body) {
     if (!error) {
       console.log("success getting repos!", body);
+    } else {
+      console.error("Uh oh, error connecting to GitHub API!")
     }
   }
   request(options, repoReqCB);
